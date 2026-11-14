@@ -1,6 +1,6 @@
 # AI Creator Studio
 
-Ein Skill für deinen KI-Agenten (Claude Code, Codex, Hermes und andere), der aus deiner Aufnahme ein fertiges Video mit Motion Graphics macht. Am meisten holt er aus Videos, in denen du in die Kamera sprichst und etwas erklärst: Erklärvideos, Tutorials, News, Tool-Vorstellungen, Kursvideos. Das Thema ist egal. Vlogs und andere Aufnahmen von dir schneidet er genauso, dann arbeitet der Agent mehr mit Bildern.
+Ein Skill für deinen KI-Agenten (Claude Code, Codex, Hermes und andere), der aus deiner Aufnahme ein fertiges Video mit Motion Graphics macht. Aufnehmen kannst du nur mit Kamera, mit Kamera und Bildschirm zusammen oder nur den Bildschirm ohne Kamera. Am meisten holt er aus Videos, in denen du etwas erklärst: Erklärvideos, Tutorials, News, Tool-Vorstellungen, Kursvideos. Das Thema ist egal. Vlogs schneidet er genauso, dann arbeitet der Agent mehr mit Bildern.
 
 ## So läuft es
 
