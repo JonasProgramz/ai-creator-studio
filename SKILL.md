@@ -1,6 +1,6 @@
 ---
 name: video-schnitt
-description: Schneidet Videos, in denen eine Person in die Kamera spricht, und baut Motion Graphics dazu (Erklärvideos, Tutorials, News, Tool-Vorstellungen, Kursvideos). Von der Rohaufnahme über Rohschnitt und Feinschnitt im eigenen Video Studio bis zum fertigen Video mit Animationen, Bildschirmaufnahmen und eingeblendeten Webseiten. Lernt mit jedem Feedback den Geschmack der Person. Nutzen bei "schneid mir das Video", "Rohschnitt", "Motion Graphics", "ich hab ein Video aufgenommen", Feedback zu einem Entwurf oder "finaler Render". Beim ersten Mal richtet der Skill sich selbst ein. Nicht für Vlogs, Gaming, Podcasts mit mehreren Kameras oder Kurzfilme.
+description: Schneidet Videos, in denen eine Person in die Kamera spricht, und baut Motion Graphics dazu (Erklärvideos, Tutorials, News, Tool-Vorstellungen, Kursvideos). Von der Rohaufnahme über Rohschnitt und Feinschnitt im eigenen Video Studio bis zum fertigen Video mit Animationen, Bildschirmaufnahmen und eingeblendeten Webseiten. Lernt mit jedem Feedback den Geschmack der Person. Nutzen bei "schneid mir das Video", "Rohschnitt", "Motion Graphics", "ich hab ein Video aufgenommen", Feedback zu einem Entwurf oder "finaler Render". Beim ersten Mal richtet der Skill sich selbst ein. Auch für Vlogs und andere Aufnahmen der Person, dann mit mehr Bildern. Nicht für Gaming, Podcasts mit mehreren Kameras oder Kurzfilme.
 ---
 
 # Video-Schnitt mit Motion Graphics

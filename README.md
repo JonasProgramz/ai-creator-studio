@@ -1,6 +1,6 @@
 # Video-Schnitt mit Claude
 
-Ein Skill für Claude Code, der aus deiner Aufnahme ein fertiges Video mit Motion Graphics macht. Für Videos, in denen du in die Kamera sprichst: Erklärvideos, Tutorials, News, Tool-Vorstellungen, Kursvideos. Das Thema ist egal. Nicht gedacht für Vlogs, Gaming, Podcasts mit mehreren Kameras oder Kurzfilme.
+Ein Skill für Claude Code, der aus deiner Aufnahme ein fertiges Video mit Motion Graphics macht. Am meisten holt er aus Videos, in denen du in die Kamera sprichst und etwas erklärst: Erklärvideos, Tutorials, News, Tool-Vorstellungen, Kursvideos. Das Thema ist egal. Vlogs und andere Aufnahmen von dir schneidet er genauso, dann arbeitet Claude mehr mit Bildern.
 
 ## So läuft es
 
