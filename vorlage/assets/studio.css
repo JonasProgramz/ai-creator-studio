@@ -1,0 +1,56 @@
+/* Studio: nur das Fundament, 1920x1080. Bühne, Grund, Kamera-Ebene und Bildschirmaufnahme.
+   Alles, was man sieht, baust du selbst, für genau diese Stelle. Farben und Schriften kommen aus tokens.css
+   (Profil der Person, nach dieser Datei geladen). Schriftfamilien: Text, Zahl, Mono. Die Werte hier sind nur
+   Rückfall, falls tokens.css fehlt. */
+:root {
+  --bg: #14161b; --sheet: #242833; --ink: #eef1f6; --ink-soft: #d6dbe4; --ink-mute: #a3abb8;
+  --akzent: #2f6fde; --akzent-tief: #1d4fa8; --akzent-rgb: 47, 111, 222; --akzent-tief-rgb: 29, 79, 168;
+  --paper: #fdfdfc; --p-ink: #171a20; --sheet-ink: #eef1f6; --vig: rgba(0, 0, 0, .45);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+/* Bilder nie verzerren: Wer Breite und Höhe setzt, bekommt contain. Wer füllen will, setzt cover ausdrücklich. */
+img { object-fit: contain; }
+html, body { width: 1920px; height: 1080px; background: var(--bg); overflow: hidden; }
+main { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); color: var(--ink);
+  font-family: Text, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
+
+/* ---------- Grund: Muster, Lichtkegel und Verlauf kommen aus tokens.css ----------
+   --muster / --muster-hell: background-image (Netz, Linien, Korn, ein Bild oder none), --muster-groesse: background-size.
+   Der Lichtkegel zeigt --muster-hell nur im Umkreis des Fokus (B.cone), --glut ist ein Hauch Akzentfarbe darunter,
+   --grund-verlauf liegt ganz unten. Wer für eine Szene einen ganz anderen Grund will, legt ihn einfach darüber. */
+#ground { position: absolute; inset: 0; z-index: 0; --gx: 0px; --gy: 0px; --cx: 640px; --cy: 520px; background: var(--grund-verlauf, none); }
+#ground .muster { position: absolute; inset: 0;
+  background-image: var(--muster, none); background-size: var(--muster-groesse, auto); background-position: var(--gx) var(--gy); }
+#ground .cone { position: absolute; inset: 0;
+  background-image: var(--muster-hell, none); background-size: var(--muster-groesse, auto); background-position: var(--gx) var(--gy);
+  -webkit-mask-image: radial-gradient(circle 430px at var(--cx) var(--cy), #000 0%, rgba(0,0,0,.45) 45%, transparent 100%);
+  mask-image: radial-gradient(circle 430px at var(--cx) var(--cy), #000 0%, rgba(0,0,0,.45) 45%, transparent 100%); }
+#ground .warm { position: absolute; inset: 0;
+  background: radial-gradient(circle 620px at var(--cx) var(--cy), var(--glut, rgba(var(--akzent-tief-rgb), .16)), transparent 70%); }
+#ground .vig { position: absolute; inset: 0; background: radial-gradient(130% 100% at 50% 45%, transparent 55%, var(--vig) 100%); }
+
+/* ---------- Kamera ----------
+   #camframe ist ein Rahmen hinter dem Ausschnitt (Breite je Zustand in studio.js, p). Wie er aussieht, entscheidest du. */
+#cam { position: absolute; inset: 0; z-index: 20; pointer-events: none; }
+#camframe { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: var(--paper);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .45), 0 30px 60px -16px rgba(0, 0, 0, .7); }
+#camclip { position: absolute; inset: 0; --ct: 0px; --cr: 0px; --cb: 0px; --cl: 0px; --cq: 0px;
+  clip-path: inset(var(--ct) var(--cr) var(--cb) var(--cl) round var(--cq)); }
+#camvid { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+#camvid video { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+
+/* Szenen-Gruppe: alles, was zusammen kommt und geht */
+.scene { position: absolute; inset: 0; z-index: 10; }
+
+/* ---------- Bildschirmaufnahme im Fenster (B.app) ----------
+   <div class="appwin" style="left..;top..;width..;height.."><div class="zoom"><video class="scr" ...></video></div></div>
+   Der Spot dunkelt alles außer einem Rechteck ab, der Rahmen markiert es. Aussehen frei anpassen. */
+.appwin { position: absolute; overflow: hidden; }
+.appwin .zoom { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+.appwin video.scr, .appwin img.scr { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+.appwin .hole { position: absolute; border-radius: 16px; box-shadow: 0 0 0 4000px rgba(10, 8, 7, .64); opacity: 0; }
+.appwin .ring { position: absolute; border: 4px solid var(--akzent); border-radius: 20px; opacity: 0; }
+
+/* Schreibmarke für B.type */
+.caret { display: inline-block; width: 3px; height: 1.05em; margin-left: 2px; vertical-align: -0.15em; background: currentColor; }

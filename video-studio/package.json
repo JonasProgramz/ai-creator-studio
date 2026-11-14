@@ -1,0 +1,10 @@
+{
+  "name": "video-studio",
+  "version": "0.1.0",
+  "description": "Leichtes Schnittprogramm im Browser für den Feinschnitt eines Rohschnitts, mit Chat zu einem KI-Agenten.",
+  "type": "module",
+  "bin": { "video-studio": "studio.mjs" },
+  "scripts": { "start": "node studio.mjs" },
+  "engines": { "node": ">=20" },
+  "license": "MIT"
+}

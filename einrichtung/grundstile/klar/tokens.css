@@ -1,0 +1,49 @@
+/* Grundstil „Klar“: Kühles Hellgrau mit Indigo, dunkle Kopfleisten, feines Netz. Modern und präzise, passt zu Produkten, Startups und Tools.
+   Schriften (OFL, Dateien liegen daneben): ibm-plex-mono, manrope. Familien: Text, Zahl, Mono.
+   Hintergrund tauschen: die Zeilen --muster bis --grund-verlauf aus einrichtung/grundstile/hintergruende.css übernehmen. */
+@font-face { font-family: Text; src: url(manrope-500.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: Text; src: url(manrope-600.woff2) format('woff2'); font-weight: 600; }
+@font-face { font-family: Text; src: url(manrope-700.woff2) format('woff2'); font-weight: 700; }
+@font-face { font-family: Text; src: url(manrope-800.woff2) format('woff2'); font-weight: 800; }
+@font-face { font-family: Zahl; src: url(manrope-700.woff2) format('woff2'); font-weight: 700; }
+@font-face { font-family: Zahl; src: url(manrope-800.woff2) format('woff2'); font-weight: 800; }
+@font-face { font-family: Mono; src: url(ibm-plex-mono-500.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: Mono; src: url(ibm-plex-mono-700.woff2) format('woff2'); font-weight: 700; }
+
+:root {
+  --bg: #eef1f6;
+  --section: #e4e8f0;
+  --sheet: #161b2e;
+  --sheet-ink: #eef1fb;
+  --sheet-line: #2a3150;
+  --sheet-akzent: #8f88ff;
+  --ink: #10142a;
+  --ink-soft: #333a55;
+  --ink-mute: #646b85;
+  --line: #cdd3e1;
+  --akzent: #5146e5;
+  --akzent-tief: #3a2fc0;
+  --akzent-rgb: 81, 70, 229;
+  --akzent-tief-rgb: 58, 47, 192;
+  --akzent-50: #eeedfd;
+  --akzent-100: #dcd9fb;
+  --akzent-200: #bdb7f6;
+  --green: #13804f;
+  --paper: #ffffff;
+  --chalk: #f4f6fa;
+  --sand: #eaedf4;
+  --rose: #dcd9fb;
+  --p-ink: #10142a;
+  --p-soft: #4a5170;
+  --p-line: #e3e7f0;
+  --tint: #e3e1fc;
+  --tint-line: #bdb7f6;
+  --tint-fg: #3a2fc0;
+  --vig: rgba(40, 50, 90, .10);
+  --glut: rgba(81, 70, 229, .10);
+  --float: 0 0 0 1px rgba(16, 20, 42, .07), 0 1px 2px rgba(16, 20, 42, .06), 0 14px 28px -10px rgba(16, 20, 42, .16), 0 44px 80px -28px rgba(16, 20, 42, .22);
+  --muster: linear-gradient(rgba(16, 20, 42, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 20, 42, .045) 1px, transparent 1px);
+  --muster-hell: linear-gradient(rgba(81, 70, 229, .22) 1px, transparent 1px), linear-gradient(90deg, rgba(81, 70, 229, .22) 1px, transparent 1px);
+  --muster-groesse: 48px 48px;
+  --grund-verlauf: none;
+}

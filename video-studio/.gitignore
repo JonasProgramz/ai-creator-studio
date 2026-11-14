@@ -1,0 +1,5 @@
+node_modules/
+.studio/
+export/
+*.mp4
+.impeccable/

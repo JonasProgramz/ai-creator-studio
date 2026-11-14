@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Video Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/ui/style.css">
+</head>
+<body>
+<header id="kopf">
+  <div class="marke"><span class="punkt"></span>Video Studio</div>
+  <div id="projektname"></div>
+  <div class="werkzeuge">
+    <button id="b-rueck" title="Rückgängig (Strg+Z)"><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></button>
+    <button id="b-vor" title="Wiederholen (Strg+Umschalt+Z)"><svg viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg></button>
+    <span class="trenner"></span>
+    <button id="b-chat-auf" title="Chat mit dem KI-Agenten ein- und ausblenden">Agent-Chat</button>
+    <button id="b-hilfe" title="Tastenkürzel">?</button>
+    <button id="b-weiter" class="primaer">Weitergeben</button>
+  </div>
+</header>
+
+<main id="arbeit">
+
+  <aside id="chat">
+    <div class="chat-kopf"><span class="claude-punkt"></span><b id="agent-name">KI-Agent</b><select id="agent-wahl" title="KI-Agent wählen" hidden></select><span id="agent-test" hidden>ungetestet</span><span id="chat-status"></span><button id="b-chat-neu" title="Neues Gespräch">Neu</button></div>
+    <div id="anmelden" hidden>
+      <p id="anmelde-text">Damit der Agent den Schnitt ändern kann, melde ihn einmal mit deinem Konto an.</p>
+      <button id="b-anmelden" class="primaer">Agent anmelden</button>
+      <div id="anmelde-code" hidden>
+        <p>Im Browser hat sich die Anmeldung geöffnet. Zeigt sie dir danach einen Code, füg ihn hier ein.</p>
+        <a id="anmelde-link" target="_blank" rel="noopener">Anmeldeseite noch einmal öffnen</a>
+        <div class="chat-reihe"><input id="code" placeholder="Code"><button id="b-code">Bestätigen</button></div>
+      </div>
+    </div>
+    <div id="chat-liste">
+      <div class="chat-leer">Sag dem Agenten, was am Schnitt anders sein soll, zum Beispiel „nimm beim Fernseher den anderen Anlauf“ oder „schneid die Pause nach dem Hook raus“. Der Agent kennt den Abspielkopf und den ausgewählten Clip.</div>
+    </div>
+    <form id="chat-form">
+      <textarea id="chat-text" rows="3" placeholder="Nachricht an den Agenten …"></textarea>
+      <div class="chat-reihe"><span id="chat-ort"></span><button id="b-chat" class="primaer" type="submit">Senden</button></div>
+    </form>
+  </aside>
+
+  <section id="buehne">
+    <div id="schirm">
+      <video id="va" playsinline preload="auto"></video>
+      <video id="vb" playsinline preload="auto"></video>
+      <div id="live"></div>
+      <div id="vorbereitung"></div>
+      <div id="qualitaet" title="Die Vorschau ist für flüssiges Springen an den Schnitten verkleinert. „Weitergeben“ rendert aus der Originalaufnahme.">Vorschau 1080p · Export in Originalqualität</div>
+    </div>
+    <div id="transport">
+      <span id="zeit">00:00.00</span>
+      <div class="knoepfe">
+        <button id="b-start" title="Zum Anfang (Pos1)"><svg viewBox="0 0 24 24"><path d="M6 5v14M18 6l-9 6 9 6z"/></svg></button>
+        <button id="b-play" class="gross" title="Abspielen (Leertaste)"><svg viewBox="0 0 24 24" id="ico-play"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+        <button id="b-ende" title="Zum Ende (Ende)"><svg viewBox="0 0 24 24"><path d="M18 5v14M6 6l9 6-9 6z"/></svg></button>
+      </div>
+      <span id="dauer">00:00.00</span>
+    </div>
+  </section>
+  <aside id="seite">
+    <div class="tabs"><button data-tab="text" class="an">Transkript</button><button data-tab="marker">Marker</button></div>
+    <div id="tab-text" class="tab an"><div id="transkript"></div></div>
+    <div id="tab-marker" class="tab"><ul id="markerliste"></ul><p class="leer">M oder F setzt einen Marker am Abspielkopf, Umschalt und Ziehen in der Timeline markiert einen Bereich. Schreib dazu, was an der Stelle anders sein soll, und sag dem Agenten dann: „Setz das Feedback um.“</p></div>
+  </aside>
+</main>
+
+<section id="leiste">
+  <div id="leiste-kopf">
+    <div class="gruppe">
+      <button id="b-teilen" title="Teilen am Abspielkopf (S)"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M8 7 5 4M16 7l3-3M8 17l-3 3M16 17l3 3"/></svg>Teilen</button>
+      <button id="b-links" title="Alles links vom Abspielkopf im Clip löschen (Q)"><svg viewBox="0 0 24 24"><path d="M14 4v16M4 8l6 4-6 4"/></svg>Q</button>
+      <button id="b-rechts" title="Alles rechts vom Abspielkopf im Clip löschen (W)"><svg viewBox="0 0 24 24"><path d="M10 4v16M20 8l-6 4 6 4"/></svg>W</button>
+      <button id="b-loeschen" title="Auswahl löschen (Entf)"><svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>Löschen</button>
+      <button id="b-marker" title="Marker mit Kommentar am Abspielkopf (M oder F)"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-5-6 5z"/></svg>Marker / Feedback</button>
+    </div>
+    <div class="gruppe">
+      <label class="luft" title="Luft an jedem Schnitt in ms. Negative Werte machen alle Schnitte enger. Wirkt auf Vorschau und Export, die Schnitte selbst bleiben.">Luft je Schnitt
+        <input id="pad" type="number" min="-1000" max="2000" step="20" value="0"> ms
+        <select id="pad-art" title="Wohin die Luft geht">
+          <option value="gleich">beide Seiten gleich</option>
+          <option value="ende">ans Ende davor</option>
+          <option value="anfang">an den Anfang danach</option>
+        </select></label>
+      <span class="trenner"></span>
+      <span id="info"></span>
+      <button id="b-raus" title="Herauszoomen (−)">−</button>
+      <input id="zoom" type="range" min="0" max="100" value="40">
+      <button id="b-rein" title="Hineinzoomen (+)">+</button>
+    </div>
+  </div>
+  <div id="spur-wrap"><canvas id="spur"></canvas></div>
+  <div id="rollbalken"><div id="rollgriff"></div></div>
+</section>
+
+<div id="hilfe" hidden>
+  <div class="karte">
+    <h2>Tastenkürzel</h2>
+    <dl>
+      <dt>Leertaste</dt><dd>Abspielen und anhalten</dd>
+      <dt>S</dt><dd>Clip am Abspielkopf teilen</dd>
+      <dt>Q / W</dt><dd>Im Clip alles links / rechts vom Abspielkopf löschen</dd>
+      <dt>Entf</dt><dd>Ausgewählten Clip oder markierte Wörter löschen</dd>
+      <dt>M oder F</dt><dd>Marker mit Kommentar am Abspielkopf</dd>
+      <dt>Umschalt + Ziehen</dt><dd>Bereich markieren und kommentieren</dd>
+      <dt>← →</dt><dd>Ein Bild zurück / vor, mit Umschalt eine Sekunde</dd>
+      <dt>↑ ↓</dt><dd>Zum vorigen / nächsten Schnitt</dd>
+      <dt>Strg+Z</dt><dd>Rückgängig, mit Umschalt wiederholen</dd>
+      <dt>Strg+Mausrad</dt><dd>Zoomen, Mausrad scrollt die Timeline</dd>
+      <dt>Ränder ziehen</dt><dd>Clip kürzen oder verlängern, die Vorschau zeigt das Randbild</dd>
+      <dt>Wörter markieren</dt><dd>Im Transkript markieren und mit Entf herausschneiden</dd>
+    </dl>
+    <button id="b-hilfe-zu" class="primaer">Verstanden</button>
+  </div>
+</div>
+
+<div id="export" hidden>
+  <div class="karte">
+    <h2>Weitergeben</h2>
+    <p id="export-text">Der Schnitt wird als Video gerendert und mit der Schnittliste für die Motion Graphics abgelegt.</p>
+    <div class="balken"><i id="export-balken"></i></div>
+    <div class="reihe"><button id="b-export-zu">Schließen</button><button id="b-export-los" class="primaer">Rendern</button></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<script src="/ui/app.js"></script>
+</body>
+</html>

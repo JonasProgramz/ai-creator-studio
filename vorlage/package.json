@@ -1,0 +1,14 @@
+{
+  "name": "yt-schnitt-studio",
+  "private": true,
+  "description": "Motion-Schnitt für Langvideos (Skill yt-schnitt)",
+  "type": "module",
+  "scripts": {
+    "check": "node werkzeug.mjs check",
+    "entwurf": "node werkzeug.mjs entwurf",
+    "render": "node werkzeug.mjs render"
+  },
+  "devDependencies": {
+    "hyperframes": "^0.8.78"
+  }
+}

@@ -1,0 +1,49 @@
+/* Grundstil „Glut“: Warmes Dunkelbraun mit Orange, waagerechte Linien wie in einem Notizbuch. Persönlich und energisch, passt zu Business, Marketing und Geschichten.
+   Schriften (OFL, Dateien liegen daneben): bricolage-grotesque, dm-mono. Familien: Text, Zahl, Mono.
+   Hintergrund tauschen: die Zeilen --muster bis --grund-verlauf aus einrichtung/grundstile/hintergruende.css übernehmen. */
+@font-face { font-family: Text; src: url(bricolage-grotesque-500.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: Text; src: url(bricolage-grotesque-600.woff2) format('woff2'); font-weight: 600; }
+@font-face { font-family: Text; src: url(bricolage-grotesque-700.woff2) format('woff2'); font-weight: 700; }
+@font-face { font-family: Text; src: url(bricolage-grotesque-800.woff2) format('woff2'); font-weight: 800; }
+@font-face { font-family: Zahl; src: url(bricolage-grotesque-700.woff2) format('woff2'); font-weight: 700; }
+@font-face { font-family: Zahl; src: url(bricolage-grotesque-800.woff2) format('woff2'); font-weight: 800; }
+@font-face { font-family: Mono; src: url(dm-mono-500.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: Mono; src: url(dm-mono-500.woff2) format('woff2'); font-weight: 700; }
+
+:root {
+  --bg: #16100c;
+  --section: #21180f;
+  --sheet: #f4e4cc;
+  --sheet-ink: #24170d;
+  --sheet-line: #e2caa6;
+  --sheet-akzent: #d9621d;
+  --ink: #f6ece2;
+  --ink-soft: #e2d4c4;
+  --ink-mute: #b29f8b;
+  --line: #3a2c22;
+  --akzent: #f07a2b;
+  --akzent-tief: #b8521a;
+  --akzent-rgb: 240, 122, 43;
+  --akzent-tief-rgb: 184, 82, 26;
+  --akzent-50: #fff0e5;
+  --akzent-100: #fddcc4;
+  --akzent-200: #f9bd93;
+  --green: #5a8f4e;
+  --paper: #fffaf4;
+  --chalk: #f3e9dc;
+  --sand: #f2e4d2;
+  --rose: #fddcc4;
+  --p-ink: #21170f;
+  --p-soft: #5e4c3e;
+  --p-line: #ecdfcf;
+  --tint: #3d2414;
+  --tint-line: #66391c;
+  --tint-fg: #fddcc4;
+  --vig: rgba(0, 0, 0, .5);
+  --glut: rgba(240, 122, 43, .16);
+  --float: 0 0 0 1px rgba(246, 236, 226, .16), 0 3px 8px rgba(0, 0, 0, .45), 0 32px 60px -14px rgba(0, 0, 0, .8), 0 90px 150px -30px rgba(0, 0, 0, .9);
+  --muster: linear-gradient(rgba(246, 236, 226, .055) 1px, transparent 1px);
+  --muster-hell: linear-gradient(rgba(255, 190, 140, .24) 1px, transparent 1px);
+  --muster-groesse: 100% 44px;
+  --grund-verlauf: none;
+}

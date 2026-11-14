@@ -1,0 +1,82 @@
+/* Hintergründe zum Kombinieren mit jedem Grundstil. Den passenden Block (dunkel oder hell) in :root der tokens.css übernehmen.
+   Beim Bild: Datei als hintergrund.jpg neben tokens.css legen, vorher unscharf und abgedunkelt bzw. aufgehellt, damit Karten lesbar bleiben. */
+
+/* netz, dunkel: Feines Netz, wie Millimeterpapier */
+:root {
+  --muster: linear-gradient(rgba(150, 175, 230, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(150, 175, 230, .07) 1px, transparent 1px);
+  --muster-hell: linear-gradient(rgba(150, 190, 255, .26) 1px, transparent 1px), linear-gradient(90deg, rgba(150, 190, 255, .26) 1px, transparent 1px);
+  --muster-groesse: 56px 56px;
+  --grund-verlauf: none;
+}
+
+/* netz, hell: Feines Netz, wie Millimeterpapier */
+:root {
+  --muster: linear-gradient(rgba(16, 20, 42, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 20, 42, .045) 1px, transparent 1px);
+  --muster-hell: linear-gradient(rgba(var(--akzent-rgb), .22) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--akzent-rgb), .22) 1px, transparent 1px);
+  --muster-groesse: 48px 48px;
+  --grund-verlauf: none;
+}
+
+/* linien, dunkel: Waagerechte Linien, wie ein Notizbuch */
+:root {
+  --muster: linear-gradient(rgba(246, 236, 226, .055) 1px, transparent 1px);
+  --muster-hell: linear-gradient(rgba(255, 255, 255, .2) 1px, transparent 1px);
+  --muster-groesse: 100% 44px;
+  --grund-verlauf: none;
+}
+
+/* linien, hell: Waagerechte Linien, wie ein Notizbuch */
+:root {
+  --muster: linear-gradient(rgba(16, 20, 42, .05) 1px, transparent 1px);
+  --muster-hell: linear-gradient(rgba(var(--akzent-rgb), .2) 1px, transparent 1px);
+  --muster-groesse: 100% 44px;
+  --grund-verlauf: none;
+}
+
+/* korn, dunkel: Ruhig mit feiner Körnung, wie Papier */
+:root {
+  --muster: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1.000 0 0 0 0 1.000 0 0 0 0 1.000 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23n%29'/%3E%3C/svg%3E");
+  --muster-hell: none;
+  --muster-groesse: 240px 240px;
+  --grund-verlauf: radial-gradient(120% 90% at 30% 20%, var(--section) 0%, var(--bg) 60%);
+}
+
+/* korn, hell: Ruhig mit feiner Körnung, wie Papier */
+:root {
+  --muster: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.235 0 0 0 0 0.196 0 0 0 0 0.137 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23n%29'/%3E%3C/svg%3E");
+  --muster-hell: none;
+  --muster-groesse: 240px 240px;
+  --grund-verlauf: radial-gradient(120% 90% at 30% 20%, var(--chalk) 0%, var(--bg) 60%);
+}
+
+/* ruhig, dunkel: Einfarbig mit weichem Verlauf, ohne Muster */
+:root {
+  --muster: none;
+  --muster-hell: none;
+  --muster-groesse: auto;
+  --grund-verlauf: radial-gradient(120% 90% at 30% 20%, var(--section) 0%, var(--bg) 65%);
+}
+
+/* ruhig, hell: Einfarbig mit weichem Verlauf, ohne Muster */
+:root {
+  --muster: none;
+  --muster-hell: none;
+  --muster-groesse: auto;
+  --grund-verlauf: radial-gradient(120% 90% at 30% 20%, var(--chalk) 0%, var(--bg) 65%);
+}
+
+/* bild, dunkel: Eigenes Bild, zum Beispiel der Arbeitsplatz unscharf und abgedunkelt (hintergrund.jpg neben tokens.css) */
+:root {
+  --muster: url(hintergrund.jpg);
+  --muster-hell: none;
+  --muster-groesse: cover;
+  --grund-verlauf: none;
+}
+
+/* bild, hell: Eigenes Bild, zum Beispiel der Arbeitsplatz unscharf und abgedunkelt (hintergrund.jpg neben tokens.css) */
+:root {
+  --muster: url(hintergrund.jpg);
+  --muster-hell: none;
+  --muster-groesse: cover;
+  --grund-verlauf: none;
+}

@@ -1,0 +1,49 @@
+/* Grundstil „Nacht“: Tiefes Nachtblau mit leuchtendem Blau, feines Netz. Sachlich und technisch, passt zu Software, KI und Erklärungen.
+   Schriften (OFL, Dateien liegen daneben): ibm-plex-mono, sora, space-grotesk. Familien: Text, Zahl, Mono.
+   Hintergrund tauschen: die Zeilen --muster bis --grund-verlauf aus einrichtung/grundstile/hintergruende.css übernehmen. */
+@font-face { font-family: Text; src: url(sora-500.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: Text; src: url(sora-600.woff2) format('woff2'); font-weight: 600; }
+@font-face { font-family: Text; src: url(sora-700.woff2) format('woff2'); font-weight: 700; }
+@font-face { font-family: Text; src: url(sora-800.woff2) format('woff2'); font-weight: 800; }
+@font-face { font-family: Zahl; src: url(space-grotesk-600.woff2) format('woff2'); font-weight: 600; }
+@font-face { font-family: Zahl; src: url(space-grotesk-700.woff2) format('woff2'); font-weight: 700; }
+@font-face { font-family: Mono; src: url(ibm-plex-mono-500.woff2) format('woff2'); font-weight: 500; }
+@font-face { font-family: Mono; src: url(ibm-plex-mono-700.woff2) format('woff2'); font-weight: 700; }
+
+:root {
+  --bg: #0d1220;
+  --section: #151d31;
+  --sheet: #2459e0;
+  --sheet-ink: #ffffff;
+  --sheet-line: rgba(255, 255, 255, .22);
+  --sheet-akzent: #ffffff;
+  --ink: #eef2fb;
+  --ink-soft: #c9d2e6;
+  --ink-mute: #8f9bb6;
+  --line: #27314a;
+  --akzent: #4c8dff;
+  --akzent-tief: #2a62d6;
+  --akzent-rgb: 76, 141, 255;
+  --akzent-tief-rgb: 42, 98, 214;
+  --akzent-50: #e9f1ff;
+  --akzent-100: #d3e3ff;
+  --akzent-200: #adc9ff;
+  --green: #2f9a6a;
+  --paper: #fbfcff;
+  --chalk: #edf1f8;
+  --sand: #e7ecf5;
+  --rose: #d3e3ff;
+  --p-ink: #121829;
+  --p-soft: #4a5571;
+  --p-line: #dfe5f0;
+  --tint: #16254a;
+  --tint-line: #2b4479;
+  --tint-fg: #cfe0ff;
+  --vig: rgba(0, 0, 0, .5);
+  --glut: rgba(76, 141, 255, .14);
+  --float: 0 0 0 1px rgba(232, 238, 255, .16), 0 3px 8px rgba(0, 0, 0, .45), 0 32px 60px -14px rgba(0, 0, 0, .8), 0 90px 150px -30px rgba(0, 0, 0, .9);
+  --muster: linear-gradient(rgba(150, 175, 230, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(150, 175, 230, .07) 1px, transparent 1px);
+  --muster-hell: linear-gradient(rgba(150, 190, 255, .26) 1px, transparent 1px), linear-gradient(90deg, rgba(150, 190, 255, .26) 1px, transparent 1px);
+  --muster-groesse: 56px 56px;
+  --grund-verlauf: none;
+}
