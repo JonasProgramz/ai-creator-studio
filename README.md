@@ -18,7 +18,7 @@ Jedes Feedback, das über ein Video hinaus gilt, landet in deinem Profil. Nach d
 
 > Installier mir den Skill von https://github.com/JonasProgramz/ai-creator-studio und richte ihn ein.
 
-Der Agent klont das Repo in seinen Skill-Ordner unter dem Namen `video-schnitt`, bei Claude Code zum Beispiel nach `.claude/skills/video-schnitt`. Starte den Agenten danach neu, damit er den Skill kennt, und sag:
+Der Agent klont das Repo in seinen Skill-Ordner unter dem Namen `video-schnitt`, bei Claude Code zum Beispiel nach `.claude/skills/video-schnitt`. Danach sag:
 
 > Ich will mein erstes Video mit dem Skill video-schnitt schneiden.
 
