@@ -20,7 +20,9 @@ Jedes Feedback, das über ein Video hinaus gilt, landet in deinem Profil. Nach d
 
 Der Agent klont das Repo in seinen Skill-Ordner unter dem Namen `video-schnitt`, bei Claude Code zum Beispiel nach `.claude/skills/video-schnitt`. Danach sag:
 
-> Ich will mein erstes Video mit dem Skill video-schnitt schneiden.
+> /video-schnitt
+
+Oder sag einfach, was du willst, etwa „Ich möchte mein neues Video schneiden, es liegt im Ordner Aufnahmen“. Den Skill musst du nicht beim Namen nennen, dein Agent erkennt selbst, wann er ihn braucht.
 
 Der Agent installiert, was fehlt, und fragt dich dann ein paar Dinge: was für Videos du machst, welche Videos anderer dir gefallen, welches Design du willst (eigenes, neu erstellt oder einer von vier Grundstilen), ob es lieber schnell oder sparsam laufen soll, ob Soundeffekte, Musik und Bilder dazukommen und wo gerendert wird. Daraus entsteht dein Profil im Ordner `video-schnitt-profil/`. Danach baut er ein Teststück von einer Minute in deinem Look.
 
