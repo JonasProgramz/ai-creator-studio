@@ -119,6 +119,10 @@ Eine HyperFrames-Komposition pro Teil (`studio/<teil>/index.html`, HTML plus GSA
 
 **Bilder und Objekte:** Zuerst in `video-schnitt-profil/assets/` nachsehen (Katalog in `assets/README.md`). Fehlt etwas, Logos als Bildmarke aus einer offiziellen Quelle holen (Presse-Kit der Marke, Wikimedia), nach `assets/logos/` legen, im Katalog eintragen und von dort in `<teil>/media/` kopieren. Dasselbe für Screenshots (`assets/oberflaechen/`) und Bilder (`assets/bilder/`). Steht im Profil ein Bildgenerator (Abschnitt „Dienste mit Schlüssel“), kannst du Bilder erzeugen, wo ein Bild mehr trägt als eine gebaute Grafik. Jede Generierung kostet Credits, also vorher die Person fragen und ihr die Prompts zeigen.
 
+**Sichtbarkeit am Anfang eines Teils:** Was später kommen soll, startet nur mit `opacity: 0` (im CSS oder per `tl.set(el, { opacity: 0 }, 0)`) und erscheint mit einem eigenen `fromTo`. Die Kombination `tl.to(el, { opacity: 1, duration: .01 }, 0)` plus `tl.set(el, { opacity: 0 }, 0)` macht das Element nach 0,01 s sichtbar, weil der Tween nach dem `set` weiterläuft. In Standbildern fällt das nicht auf, in der Live-Abnahme steht das Element dann ab Beginn des Teils im Bild. Umgekehrt: Das Hauptmotiv eines Videos (Logo, Titelbild) ist ab dem ersten Bild erkennbar da und setzt sich höchstens in rund 0,3 s zusammen, sonst sieht man zu Beginn nur einen Strich.
+
+**Auswahl, die über Felder wandert:** Kein eigener Rahmen, der per `offsetLeft` vorab gemessen wird, der sitzt versetzt, sobald Schrift oder Skalierung beim Messen noch nicht stimmen. Besser das Feld selbst einfärben (Rahmen und Schein am Element) und nach dem letzten Feld wieder ausschalten.
+
 **Medien aufbereiten:**
 - **Ruckelnde Webcam** findet `ffmpeg -vf "scale=480:-1,freezedetect=n=0.002:d=0.15"` auf `voll.mp4`. Die Bereiche nach Anteil eingefrorener Bilder gruppieren, ab rund 25 % sieht man es. Dort Kamera ganz weg, Vollbild-Animation, Wechsel nur an Satzgrenzen.
 - **Clips mit Alpha** (ProRes/qtrle `.mov`) als WebM VP9 mit `yuva420p` konvertieren und auf die Bounding-Box der Alpha-Maske zuschneiden, dann lassen sie sich als `<video>` frei platzieren.
