@@ -48,7 +48,7 @@ async function laden() {
   $('#b-weiter').textContent = P.modus === 'abnahme' ? 'Feedback speichern' : 'Weitergeben';
   for (const id of Object.keys(P.quellen)) if (!Q[id]) {
     Q[id] = { dauer: 0, welle: null, woerter: [] };
-    fetch(`/media/${id}/woerter`).then(r => r.json()).then(w => { Q[id].woerter = w; transkript(); });
+    fetch(`/media/${id}/woerter`).then(r => r.json()).then(w => { Q[id].woerter = w.sort((x, y) => x[0] - y[0]); transkript(); });
   }
   layout(); transkript(); markerliste(); zeichne(); zeitAnzeige(); liveStart();
 }
@@ -197,8 +197,11 @@ function transkript() {
     if (c.name && c.name !== letzterName) { const k = document.createElement('span'); k.className = 'kapitel'; k.textContent = c.name; frag.appendChild(k); }
     else if (i > 0) { const n = document.createElement('span'); n.className = 'naht'; n.title = 'Schnitt'; frag.appendChild(n); }
     letzterName = c.name;
-    for (const [t0, t1, w] of Q[c.quelle]?.woerter || []) {
-      if (t0 < V(c) - 0.05 || t0 >= BI(c)) continue;
+    // Wörter sind nach Zeit sortiert: per Binärsuche zum Clipanfang springen statt bei jedem Clip alle Wörter durchzugehen
+    const ws = Q[c.quelle]?.woerter || [], v0 = V(c) - 0.05, b0 = BI(c);
+    let lo = 0, hi = ws.length; while (lo < hi) { const m = (lo + hi) >> 1; if (ws[m][0] < v0) lo = m + 1; else hi = m; }
+    for (let k = lo; k < ws.length && ws[k][0] < b0; k++) {
+      const [t0, t1, w] = ws[k];
       const e = document.createElement('span'); e.className = 'w'; e.textContent = w;
       const T0 = L.start[i] + Math.max(0, t0 - V(c)), T1 = L.start[i] + Math.min(BI(c), t1) - V(c);
       e.dataset.i = WT.length; WT.push({ t0: T0, t1: T1, el: e });
@@ -455,8 +458,13 @@ cv.addEventListener('wheel', e => {
 }, { passive: false });
 function vorschauBild(quelle, s) {
   const src = `/media/${quelle}/proxy.mp4`; if (!A.src.endsWith(src)) A.src = src;
-  A.muted = true; A.currentTime = s; kopfAusRand = true;
+  A.muted = true; kopfAusRand = true;
+  // Beim Ziehen nur suchen, wenn die letzte Suche fertig ist, sonst stauen sich die Anfragen. Die letzte Position wird nachgeholt.
+  if (A.seeking) { bildZiel = s; return; }
+  bildZiel = null; A.currentTime = s;
 }
+let bildZiel = null;
+A.addEventListener('seeked', () => { if (bildZiel !== null && zug?.art === 'trim') { const s = bildZiel; bildZiel = null; A.currentTime = s; } });
 let kopfAusRand = false;
 
 // ---------- Bedienung ----------

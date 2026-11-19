@@ -368,9 +368,12 @@ function video(req, res, pfad) {
   if (!fs.existsSync(pfad)) { res.writeHead(404); return res.end(); }
   const g = fs.statSync(pfad).size, r = req.headers.range;
   if (!r) { res.writeHead(200, { 'Content-Type': 'video/mp4', 'Content-Length': g, 'Accept-Ranges': 'bytes' }); return fs.createReadStream(pfad).pipe(res); }
-  const [a, b] = r.replace('bytes=', '').split('-'); const s = parseInt(a), e = b ? parseInt(b) : g - 1;
+  // Offene Anfragen („bytes=X-“) nur in Stücken von 4 MB beantworten und den Lesestrom beim Abbruch schließen. Sonst hält
+  // bei langen Aufnahmen jede Suche eine Verbindung bis zum Dateiende offen, Chrome erlaubt aber nur sechs je Server,
+  // und nach ein paar Schnitten warten Video und Speichern sekundenlang auf eine freie.
+  const [a, b] = r.replace('bytes=', '').split('-'); const s = parseInt(a), e = Math.min(b ? parseInt(b) : g - 1, s + 4 * 1024 * 1024 - 1, g - 1);
   res.writeHead(206, { 'Content-Type': 'video/mp4', 'Content-Range': `bytes ${s}-${e}/${g}`, 'Accept-Ranges': 'bytes', 'Content-Length': e - s + 1 });
-  fs.createReadStream(pfad, { start: s, end: e }).pipe(res);
+  const st = fs.createReadStream(pfad, { start: s, end: e }); res.on('close', () => st.destroy()); st.pipe(res);
 }
 const body = req => new Promise(ok => { let d = ''; req.on('data', c => d += c); req.on('end', () => { try { ok(JSON.parse(d || '{}')); } catch { ok({}); } }); });
 const json = (res, x, code = 200) => { res.writeHead(code, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(x)); };
