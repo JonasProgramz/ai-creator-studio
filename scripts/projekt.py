@@ -6,6 +6,7 @@
 #   "fps": 30,                                          Bildrate der Aufnahme und der Vorschau
 #   "final_fps": 60,                                    optional, Bildrate des finalen Renders (Standard 60)
 #   "breite": 1920,                                     optional, Kamera beim Zusammensetzen auf diese Breite bringen (2560x1440 -> 1920x1080)
+#   "kamera_ausschnitt": {"aufnahme.mp4": "752:423:1768:965"},  optional, Kamera aus einem OBS-Bild mit Bildschirm und Kamera in der Ecke (16:9, w:h:x:y)
 #   "capcut": "Claude Desktop App - Rohschnitt",        fertiger Schnitt (Projektname in CapCut, nur falls mit CapCut geschnitten)
 #   "bildschirm": {"datei": "/Pfad/screen.mov", "versatz": 1.4},
 #   "teile": [["v01-hook", null], ["v02-tabs", "Kurze Einordnung"]]

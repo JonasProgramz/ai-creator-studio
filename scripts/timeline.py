@@ -41,7 +41,11 @@ def baue(ziel, scr=False):
         cmd += ['-ss', f'{ss:.4f}', '-t', f"{c['d'] + 0.5:.4f}", '-i', q]
         # erst auf die Bildrate des Projekts bringen, dann Bilder zählen: Bildschirmaufnahmen haben oft 60 fps oder variable Raten
         v = f'fps={F},trim=end_frame={c["n"]},setpts=PTS-STARTPTS'
-        if not scr and P.get('breite'): v += f",scale={P['breite']}:-2:flags=lanczos"   # z.B. 2560x1440 der Kamera auf 1920x1080
+        # OBS-Mischbild mit Kamera in einer Ecke: Kamera ausschneiden, dann wie eine Webcam-Datei behandeln
+        aus = P.get('kamera_ausschnitt', {}).get(os.path.basename(c['src']))
+        if not scr and aus:
+            bw = P.get('breite', 1920); v += f",crop={aus},scale={bw}:{bw * 9 // 16}:flags=lanczos,setsar=1"
+        elif not scr and P.get('breite'): v += f",scale={P['breite']}:-2:flags=lanczos,setsar=1"   # z.B. 2560x1440 der Kamera auf 1920x1080
         # scr_breite: größere Bildschirmspur für scharfe Zooms (z. B. 2560 aus einer 4K-Aufnahme)
         sw = P.get('scr_breite', 1920); sh = sw * 9 // 16
         if scr: v += f',scale={sw}:{sh}:force_original_aspect_ratio=decrease:flags=lanczos,pad={sw}:{sh}:(ow-iw)/2:(oh-ih)/2:color=0x161311,setsar=1'
