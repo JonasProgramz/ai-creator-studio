@@ -22,6 +22,8 @@ Ein Video, bei dem man denkt, ein Motion-Design-Studio hätte es gemacht. Jede S
 
 **Soundeffekte sparsam.** Wenige, an Stellen, die etwas bedeuten. Ein Testvideo mit einem Effekt alle drei Sekunden war „viel zu ablenkend“.
 
+**Was im Bild steht, muss fachlich stimmen.** Zeigt eine Szene eine Datei, eine Anleitung oder eine Beschriftung, liest du sie einmal mit den Augen eines Profis: Würde man das wirklich so schreiben, widerspricht es etwas anderem im Bild, heißt etwas so, wie es wirklich heißt? Zuschauer nehmen genau diese Zeilen als Vorlage. Läuft neben einem Beleg eine eigene Grafik, baut sie sich in dieselbe Richtung auf wie der Beleg, sonst verwirrt es.
+
 **Blickrichtung.** Schaut die Person beim Zeigen zu ihrem Bildschirm, steht sie auf der Seite, von der aus ihr Blick zum Inhalt geht, sonst schaut sie aus dem Bild heraus. Die Richtung steht im Profil.
 
 ## Was immer gilt
