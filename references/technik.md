@@ -191,3 +191,5 @@ Mit jedem Entwurf kommen die Quellen der Kompositionen an den Ablageort aus `vid
 - `werkzeug.mjs` kopiert `assets/` vor jedem Lauf in den Teil. Geändert wird nur `studio/assets/`, nie die Kopien.
 - `check` bricht bei parallelen Läufen an der Frist ab. Dann gelten die Standbilder, nicht wiederholen.
 - `npx` scheitert an Sonderzeichen im Pfad wie „&“, deshalb ruft `werkzeug.mjs` die CLI direkt über Node auf.
+- **Videos, die erst das Skript anlegt, bleiben im Render schwarz.** In der Vorschau und auf Standbildern sind sie zu sehen, im echten Render nicht. Jedes `<video>` gehört fest ins HTML (mit `id`, `data-start`, `data-duration`, `data-track-index`), das Skript setzt nur Lage und Sichtbarkeit. Videos deshalb immer im Probe-Render prüfen.
+- **Bildbögen täuschen über die Größe.** Auf einem Bogen mit kleinen Kacheln wirkt jede Szene kleiner und leerer, als sie ist. Größe, Lesbarkeit und Anschnitte an Einzelbildern in voller Auflösung beurteilen.
