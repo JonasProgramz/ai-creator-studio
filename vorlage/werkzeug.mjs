@@ -19,6 +19,12 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const HF = path.join(ROOT, 'node_modules', 'hyperframes', 'bin', 'hyperframes.mjs');
+// Zwischenspeicher der Renders (Einzelbilder aus den Videos, schnell 30 GB und mehr) neben den Arbeitsordner statt in den
+// System-Temp-Ordner, sonst läuft unter Windows C: voll und der Render bricht mit "No space left on device" ab
+// (Claude Apps, 26.11.2026). Überschreiben mit STUDIO_TMP.
+const TMP = process.env.STUDIO_TMP || path.join(ROOT, '..', 'tmp');
+fs.mkdirSync(TMP, { recursive: true });
+const TMPENV = { TEMP: TMP, TMP: TMP, TMPDIR: TMP };
 const SKIP = new Set(['assets', '_start', 'node_modules', 'output', 'katalog', 'logos']);
 const [cmd, ...args] = process.argv.slice(2);
 const PJ = path.join(ROOT, '..', 'projekt.json');
@@ -29,7 +35,7 @@ function fail(msg) { console.error(msg); process.exit(1); }
 
 function hf(argv, env = {}) {
   if (!fs.existsSync(HF)) fail('HyperFrames fehlt. Erst "npm install" in diesem Ordner ausführen.');
-  const r = spawnSync(process.execPath, [HF, ...argv], { cwd: ROOT, stdio: 'inherit', env: { ...process.env, ...env } });
+  const r = spawnSync(process.execPath, [HF, ...argv], { cwd: ROOT, stdio: 'inherit', env: { ...process.env, ...TMPENV, ...env } });
   if (r.status !== 0) fail(`hyperframes ${argv[0]} ist fehlgeschlagen.`);
 }
 
@@ -72,7 +78,7 @@ function renderLauf(name) {
     '--workers', process.env.STUDIO_WORKERS || '4', '--quiet', ...(GPU ? ['--gpu'] : [])];
   console.log(`== ${name} -> ${out}`);
   return new Promise((ok, nein) => {
-    const p = spawn(process.execPath, [HF, ...a], { cwd: ROOT, stdio: 'inherit', env: { ...process.env, HF_CAPTURE_PARALLEL_STREAM: 'true', NODE_OPTIONS: '--max-old-space-size=8192' } });
+    const p = spawn(process.execPath, [HF, ...a], { cwd: ROOT, stdio: 'inherit', env: { ...process.env, ...TMPENV, HF_CAPTURE_PARALLEL_STREAM: 'true', NODE_OPTIONS: '--max-old-space-size=8192' } });
     p.on('close', c => c === 0 ? ok() : nein(new Error(`Render von ${name} ist fehlgeschlagen.`)));
   });
 }
